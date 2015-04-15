@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers;
+<?php namespace FreshdeskReporting;
 
 use Cache;
 use Exception;
@@ -6,7 +6,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ParseException;
 use GuzzleHttp\Pool;
 
-class DataControllerException extends Exception {}
+class DataControllerException extends Exception
+{
+}
 
 class DataController extends Controller
 {
