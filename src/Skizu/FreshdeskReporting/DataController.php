@@ -1,10 +1,11 @@
 <?php namespace FreshdeskReporting;
 
-use Cache;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ParseException;
 use GuzzleHttp\Pool;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Routing\Controller;
 
 class DataControllerException extends Exception
 {
