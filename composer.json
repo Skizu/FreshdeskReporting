@@ -1,0 +1,23 @@
+{
+    "name": "skizu/freshdeskreporting",
+    "type": "library",
+    "description": "A way to collect and report on Freshdesk tickets",
+    "keywords": ["laravel", "php", "api", "wrapper", "freshdesk", "ticket"],
+    "license": "MIT",
+    "require": {
+	"php": ">=5.4.0",
+	"illuminate/support": "~5",
+	"guzzlehttp/guzzle": "~5.2"
+    },
+    "autoload": {    
+        "psr-4": {
+            "FreshdeskReporting\\": "src/"
+        }
+    },  
+    "authors": [
+        {
+            "name": "Skizu",
+            "email": "email@danielhunt.info"
+        }
+    ]
+}
