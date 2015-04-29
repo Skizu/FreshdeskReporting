@@ -35,7 +35,7 @@ class DataController extends Controller
         });
     }
 
-    private function _getDataPartialRecursive($filter, $page = 0, $data = [])
+    private function _getDataPartialRecursive($filter, $page = 1, $data = [])
     {
 
         $result = $this->_getDataPartial($filter, $page);
