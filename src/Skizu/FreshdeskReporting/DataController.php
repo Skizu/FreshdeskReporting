@@ -16,14 +16,34 @@ class DataController extends Controller
     private $client;
     private $key;
     private $path;
+    private $data;
 
     public function __construct($name, \Closure $filter, $path = false)
     {
         $this->client = new Client(['base_url' => env('FRESHDESK_API_URL')]);
-        $this->key = md5("dataset_$name");
+        $this->key = "dataset_$name";
         $this->batch_size = env('REQUEST_BATCH_SIZE', 3);
         $this->path = ($path) ? $path : '/helpdesk/tickets.json';
         $this->data = $this->_fetchDataset($filter);
+    }
+
+    public function getData() {
+        return $this->data;
+    }
+
+    private function _setKey($key)
+    {
+        return $this->key .= "_$key";
+    }
+
+    public function filter($key, $filter)
+    {
+        $this->_setKey($key);
+        return $this->data = Cache::get($this->key, function () use ($filter) {
+            Cache::add($this->key, $data = array_filter($this->data, $filter), 60);
+
+            return $data;
+        });
     }
 
     private function _fetchDataset($filter)
@@ -35,7 +55,7 @@ class DataController extends Controller
         });
     }
 
-    private function _getDataPartialRecursive($filter, $page = 1, $data = [])
+    private function _getDataPartialRecursive($filter, $page = 0, $data = [])
     {
 
         $result = $this->_getDataPartial($filter, $page);
